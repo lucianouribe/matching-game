@@ -24,14 +24,17 @@ body {
   background-image: url("/back.jpg");
   background-size: contain;
 }
-.punctuation {
+.stats-box {
   margin: 0 auto;
   padding: 10px;
   background-color: #fff;
   border: 3px solid #000;
-  height: 40px;
-  width: 120px;
+  height: 130px;
+  width: 220px;
   border-radius: 5px;
+}
+h5 {
+  font-size: 20px;
 }
 .center {
   margin-left: 15%;

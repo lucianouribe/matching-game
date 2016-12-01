@@ -4,10 +4,13 @@ $(document).ready( function() {
   var alert = $('.alert');
   var winCount = 0
   var puntos = $('.punctuation')
+  var clicks = $('.clicks')
+  var clickCount = 0
   var game = $('.game')
   var bigButton = $('.new-game')
   var noMore = $('.done')
-
+  var best = 30
+  var theKing = $('.the-king')
 
   var bla = ['ش', 'ث', 'م', 'ض', 'و', 'ة', 'ك', '٤', 'ش', 'ث', 'م', 'ض', 'و', 'ة', 'ك', '٤']
 
@@ -26,14 +29,15 @@ $(document).ready( function() {
 
   function evaluate() {
     if(firstCard.text() === secondCard.text()) {
-      firstCard.text('matched');
-      secondCard.text('matched');
+      firstCard.text('matched').css("font-size","30px");
+      firstCard.parent().css("background-color","red");
+      secondCard.text('matched').css("font-size","30px");
+      secondCard.parent().css("background-color","red");
       alert.text('Match!').fadeOut(500);
       firstCard = null;
       secondCard = null;
-
       winCount += 1;
-      puntos.text(winCount)
+      puntos.text("Points: " + winCount)
       reEvaluate();
     } else {
       alert.text('No Match!').fadeOut(500);
@@ -49,16 +53,16 @@ $(document).ready( function() {
   });
 
   $cards.click(function() {
-    // debugger;
     alert.show('');
     var card = $(this).children();
     if(card.text() === 'matched') {
       noMore();
     } else {
+      clickCount += 1;
+      clicks.text("Clicks: " + clickCount)
       if(!firstCard) {
         firstCard = card;
         card.show();
-        // debugger;
       } else {
         secondCard = card;
         card.show();
@@ -73,7 +77,9 @@ $(document).ready( function() {
       game.hide();
       bigButton.show();
       $cards.children().fadeOut(10);
-      reshuffle();
+      if(clickCount < best) {
+        best = clickCount;
+      }
     }
   }
 
@@ -81,7 +87,12 @@ $(document).ready( function() {
     game.show();
     bigButton.hide();
     winCount = 0;
-    puntos.text(winCount);
+    puntos.text("Points: " + winCount);
+    $cards.css("background-color","white")
+    $cards.children().css("font-size","40px")
+    theKing.text("Best: " + best)
+    clickCount = 0
+    reshuffle();
   })
 
 
