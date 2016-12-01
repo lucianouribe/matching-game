@@ -1,0 +1,38 @@
+.btn {
+  height: 70px;
+  margin: 30px;
+  border: 3px solid #000;
+  border-radius: 8px;
+}
+.btn p {
+  display: none;
+  font-size: 40px;
+}
+.one {
+  display: block;
+}
+.space {
+  height: 50px;
+}
+.game {
+  display: block;
+}
+.new-game {
+  display: none;
+}
+body {
+  background-image: url("/back.jpg");
+  background-size: contain;
+}
+.punctuation {
+  margin: 0 auto;
+  padding: 10px;
+  background-color: #fff;
+  border: 3px solid #000;
+  height: 40px;
+  width: 120px;
+  border-radius: 5px;
+}
+.center {
+  margin-left: 15%;
+}
