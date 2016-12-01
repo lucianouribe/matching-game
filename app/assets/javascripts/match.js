@@ -6,6 +6,8 @@ $(document).ready( function() {
   var puntos = $('.punctuation')
   var game = $('.game')
   var bigButton = $('.new-game')
+  var noMore = $('.done')
+
 
   var bla = ['ش', 'ث', 'م', 'ض', 'و', 'ة', 'ك', '٤', 'ش', 'ث', 'م', 'ض', 'و', 'ة', 'ك', '٤']
 
@@ -24,11 +26,12 @@ $(document).ready( function() {
 
   function evaluate() {
     if(firstCard.text() === secondCard.text()) {
-      firstCard.text('matched')
-      secondCard.text('matched')
+      firstCard.text('matched');
+      secondCard.text('matched');
       alert.text('Match!').fadeOut(500);
       firstCard = null;
       secondCard = null;
+
       winCount += 1;
       puntos.text(winCount)
       reEvaluate();
@@ -41,20 +44,26 @@ $(document).ready( function() {
     }
   }
 
+  noMore.click(function() {
+    // You won't click anymore!
+  });
 
   $cards.click(function() {
     // debugger;
     alert.show('');
     var card = $(this).children();
-    console.log(card)
-    if(!firstCard) {
-      firstCard = card;
-      card.show();
-      // debugger;
+    if(card.text() === 'matched') {
+      noMore();
     } else {
-      secondCard = card;
-      card.show();
-      evaluate();
+      if(!firstCard) {
+        firstCard = card;
+        card.show();
+        // debugger;
+      } else {
+        secondCard = card;
+        card.show();
+        evaluate();
+      }
     }
   });
 
@@ -63,6 +72,7 @@ $(document).ready( function() {
       alert.text('You Win!!!')
       game.hide();
       bigButton.show();
+      $cards.children().fadeOut(10);
       reshuffle();
     }
   }
