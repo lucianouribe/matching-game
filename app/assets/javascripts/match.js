@@ -1,4 +1,5 @@
 $(document).ready( function() {
+  // variable assignments
   var $cards = $('.cards');
   var firstCard, secondCard;
   var alert = $('.alert');
@@ -12,6 +13,7 @@ $(document).ready( function() {
   var best = 30
   var theKing = $('.the-king')
 
+  // shuffle array & putting its elements on the cards
   var bla = ['ش', 'ث', 'م', 'ض', 'و', 'ة', 'ك', '٤', 'ش', 'ث', 'م', 'ض', 'و', 'ة', 'ك', '٤']
 
   function reshuffle() {
@@ -27,6 +29,7 @@ $(document).ready( function() {
     })
   }
 
+  // evaluate matching || no matching
   function evaluate() {
     if(firstCard.text() === secondCard.text()) {
       firstCard.text('matched').css("font-size","30px");
@@ -48,10 +51,12 @@ $(document).ready( function() {
     }
   }
 
+  // disabling matched buttons
   noMore.click(function() {
     // You won't click anymore!
   });
 
+  // card opening
   $cards.click(function() {
     alert.show('');
     var card = $(this).children();
@@ -71,6 +76,7 @@ $(document).ready( function() {
     }
   });
 
+  // Checking winning status
   function reEvaluate() {
     if(winCount === 8) {
       alert.text('You Win!!!')
@@ -83,6 +89,7 @@ $(document).ready( function() {
     }
   }
 
+  // New game button reseter
   bigButton.click(function(){
     game.show();
     bigButton.hide();
@@ -95,6 +102,6 @@ $(document).ready( function() {
     reshuffle();
   })
 
-
+  // start
   reshuffle();
 });
